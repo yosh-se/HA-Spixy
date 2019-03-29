@@ -1,6 +1,6 @@
 from .plugin import Plugin
 
-from re import compile, IGNORECASE, MULTILINE
+from re import compile, IGNORECASE, MULTILINE, UNICODE, DOTALL
 from html import unescape
 import requests 
 
@@ -15,7 +15,7 @@ class TitlePlugin(Plugin):
         self._pages = {}
         self._titles_fetched = False
         self._url_match = compile('https?://[^\s/$.?#].[^\s]*')
-        self._title_match = compile('<title>(.+)<\/title>', IGNORECASE | MULTILINE)
+        self._title_match = compile('<title>(.+)<\/title>', IGNORECASE | MULTILINE | UNICODE | DOTALL)
         self._session = FuturesSession(max_workers=5)
 
         super(TitlePlugin, self).__init__(config)
