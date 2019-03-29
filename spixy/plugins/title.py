@@ -78,7 +78,7 @@ class TitlePlugin(Plugin):
                 return
 
             try:
-                title = self._title_match.search(response.text).group(1)
+                title = self._title_match.search(response.text).group(0)
                 self._pages[page] = unescape(title)
                 self._send_title(prefix, target, page, title, multiple)
                 return
